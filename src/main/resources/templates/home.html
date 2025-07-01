@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Dashboard</title>
+</head>
+<body style="margin: 0; font-family: Arial, sans-serif; background-color: #f2f2f2;">
+
+<!-- Header -->
+<th:block th:replace="~{fragments/header :: header}" />
+
+<!-- Layout: Sidebar + Main -->
+<div style="display: flex;">
+
+    <!-- Sidebar -->
+        <th:block th:replace="~{fragments/sidebar :: sidebar}" />
+
+    <!-- Dashboard Content -->
+    <div style="flex-grow: 1; padding: 40px; min-height: 100vh;">
+        <div style="background-color: #ffffff; padding: 30px; border-radius: 10px; max-width: 800px;">
+            <h1 style="color: #2c3e50;">Welcome back, <span th:text="${user.userName}">User</span> 👋</h1>
+            <p style="margin-top: 10px; font-size: 16px; color: #555;">
+                You're currently in <strong>Semester <span th:text="${user.semester}"></span></strong>. Use the sidebar to explore your profile, courses, and academic progress.
+            </p>
+        </div>
+    </div>
+
+</div>
+
+<!-- Footer -->
+<th:block th:replace="~{fragments/footer :: footer}" />
+
+</body>
+</html>

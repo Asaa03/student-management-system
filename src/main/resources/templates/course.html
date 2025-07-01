@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Courses</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f2f2f2;">
+
+<!-- Header -->
+<th:block th:replace="~{fragments/header :: header}" />
+
+<!-- Main layout: Sidebar + Content -->
+<div style="display: flex; min-height: 100vh;">
+
+  <!-- Sidebar -->
+
+  <th:block th:replace="~{fragments/sidebar :: sidebar}" />
+
+  <!-- Main Content -->
+  <div style="flex-grow: 1; padding: 30px;">
+    <div style="background-color: #ffffff; padding: 30px; border-radius: 8px; max-width: 95%; margin: 0 auto; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
+      <h1 style="text-align: center; color: #2c3e50; margin-bottom: 30px;">All Courses</h1>
+
+      <table border="1" cellpadding="10" cellspacing="0" style="width: 100%; border-collapse: collapse;">
+        <thead>
+        <tr style="background-color: #ecf0f1;">
+          <th style="text-align: left; padding: 12px;">Course Code</th>
+          <th style="text-align: left; padding: 12px;">Course Name</th>
+          <th style="text-align: center; padding: 12px;">Credits</th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="entry : ${courses}">
+          <tr>
+            <td colspan="3" style="background-color: #d9edf7; font-weight: bold; text-align: left; padding: 12px;"
+                th:text="'Semester ' + ${entry.key}"></td>
+          </tr>
+          <tr th:each="course : ${entry.value}" style="background-color: #fdfdfd;">
+            <td style="padding: 10px;" th:text="${course.courseCode}"></td>
+            <td style="padding: 10px;" th:text="${course.courseName}"></td>
+            <td style="text-align:center; padding: 10px;" th:text="${course.cred}"></td>
+          </tr>
+        </th:block>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<th:block th:replace="~{fragments/footer :: footer}" />
+</body>
+</html>

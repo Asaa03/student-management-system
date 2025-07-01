@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Available Courses</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f2f2f2;">
+
+<th:block th:replace="~{fragments/header :: header}" />
+
+<div style="display: flex; min-height:100vh;">
+
+    <th:block th:replace="~{fragments/sidebar :: sidebar}" />
+
+    <div style="flex-grow: 1; padding: 30px;">
+        <div style="background-color: #ffffff; padding: 30px; border-radius: 8px;">
+
+            <h2 style="color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px;">Available Courses</h2>
+            <form th:action="@{/user/course/enroll}" method="post" style="margin-top: 20px; margin-right:50px;">
+                <div th:each="course : ${courses}" style="margin-bottom: 10px; padding: 10px; background-color: #ecf0f1; border: 1px solid #bdc3c7; border-radius: 5px;">
+                    <label style="cursor: pointer;">
+                        <input type="checkbox" name="courseIds" th:value="${course.id}" style="margin-right: 10px;"/>
+                        <span th:text="${course.courseCode + ' - ' + course.courseName}"></span>
+                    </label>
+                </div>
+
+                <button type="submit" style="padding: 10px 20px; background-color: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                    Enroll Now
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<th:block th:replace="~{fragments/footer :: footer}" />
+</body>
+</html>

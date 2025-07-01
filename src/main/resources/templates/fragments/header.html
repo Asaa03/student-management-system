@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body style="margin: 0; padding: 0;">
+
+<header th:fragment="header"
+        style="display: flex; justify-content: space-between; align-items: center; background-color: white; padding: 20px;">
+
+    <!-- Left: Title -->
+    <div style="flex: 1; text-align: left; color: #2c3e50; font-weight: bold; font-size: 18px; margin-left:30px;">
+        Student Management System
+    </div>
+
+    <!-- Right: Login/Logout -->
+    <div style="flex: 1; text-align: right;">
+        <div sec:authorize="isAuthenticated()">
+            <a th:href="@{/logout}" style="text-decoration: none; color: red; font-weight: bold; margin-right: 50px;">Logout</a>
+        </div>
+        <div sec:authorize="!isAuthenticated()">
+            <a th:href="@{/}" style="text-decoration: none; color: green; font-weight: bold; margin-right: 30px;">Login</a>
+        </div>
+    </div>
+
+</header>
+
+</body>
+</html>

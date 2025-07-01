@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Course</title>
+</head>
+<body style="margin: 0; font-family: Arial, sans-serif; background-color: #f8f8f8;">
+
+<!-- Header -->
+<th:block th:replace="~{fragments/header :: header}"/>
+
+<!-- Layout: Sidebar + Content -->
+<div style="display: flex; min-height: 100vh;">
+
+  <!-- Sidebar -->
+  <th:block th:replace="~{fragments/sidebarAdmin :: sidebarAdmin}" />
+
+  <!-- Main Content -->
+  <div style="flex-grow: 1; padding: 40px;">
+
+    <h2 style="color: #2c3e50; margin-bottom: 30px;">➕ Add New Course</h2>
+
+    <div style="background-color: #ffffff; padding: 40px; border-radius: 12px; width: 600px; box-shadow: 0 4px 8px rgba(0,0,0,0.05);">
+      <form th:action="@{/admin/addCourse}" method="post" th:object="${course}">
+
+        <label for="courseCode" style="font-weight: bold;">Course Code</label>
+        <input type="text" id="courseCode" name="courseCode" required
+               style="width: 96%; padding: 10px; margin-bottom: 20px; border-radius: 8px; border: 1px solid #ccc;" />
+
+        <label for="courseName" style="font-weight: bold;">Course Name</label>
+        <input type="text" id="courseName" name="courseName" required
+               style="width: 96%; padding: 10px; margin-bottom: 20px; border-radius: 8px; border: 1px solid #ccc;" />
+
+        <label for="semester" style="font-weight: bold;">Semester</label>
+        <input type="number" id="semester" name="semester" min="1" max="8" required
+               style="width: 96%; padding: 10px; margin-bottom: 20px; border-radius: 8px; border: 1px solid #ccc;" />
+
+        <label for="cred" style="font-weight: bold;">Credit</label>
+        <input type="number" id="cred" name="cred" required
+               style="width: 96%; padding: 10px; margin-bottom: 30px; border-radius: 8px; border: 1px solid #ccc;" />
+
+        <button type="submit"
+                style="width: 100%; padding: 12px; background-color: #3498db; color: white; border: none; border-radius: 8px; font-weight: bold;">
+            Add Course
+        </button>
+        <p th:if="${success}" th:text="${success}" style="color: green; margin-top: 12px;"></p>
+      </form>
+    </div>
+
+  </div>
+</div>
+
+<th:block th:replace="~{fragments/footer :: footer}"/>
+
+</body>
+</html>
